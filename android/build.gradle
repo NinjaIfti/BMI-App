@@ -1,0 +1,35 @@
+buildscript {
+    ext.kotlin_version = '1.8.21' // Kotlin version
+    repositories {
+        google() // Google's repository for Android dependencies
+        mavenCentral() // Maven repository for dependencies
+    }
+
+    dependencies {
+        classpath 'com.android.tools.build:gradle:8.1.0' // Android Gradle Plugin version
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version" // Kotlin Gradle Plugin
+    }
+}
+
+allprojects {
+    repositories {
+        google() // Google's repository for Android dependencies
+        mavenCentral() // Maven repository for dependencies
+    }
+}
+
+// Custom build directory setup (you can leave this as is)
+rootProject.buildDir = '../build'
+subprojects {
+    project.buildDir = "${rootProject.buildDir}/${project.name}"
+}
+
+// Make sure app module is evaluated
+subprojects {
+    project.evaluationDependsOn(':app')
+}
+
+// Clean task to delete build directory
+tasks.register("clean", Delete) {
+    delete rootProject.buildDir
+}
