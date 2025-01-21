@@ -8,6 +8,10 @@ class HealthBmiCalculator extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      theme: ThemeData.dark().copyWith(
+        scaffoldBackgroundColor: Color(0xFF090D22),
+        appBarTheme: AppBarTheme(backgroundColor: Color(0xFF090D22)),
+      ),
       home: InputPage(),
     );
   }
@@ -28,9 +32,6 @@ class _InputPageState extends State<InputPage> {
       body: Center(
         child: Text('Body Text'),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {},
-        child: Icon(Icons.add),
       ),
     );
   }
